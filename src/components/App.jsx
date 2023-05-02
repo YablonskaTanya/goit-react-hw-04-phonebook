@@ -17,16 +17,14 @@ export const App = () => {
     ]
   );
 
-  const [filter, setFilter] = useState('');
-
   useEffect(() => {
     window.localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(contacts));
   }, [contacts]);
 
-  const formSubmitHendler = e => {
+  const formSubmitHendler = ({ name, number }) => {
     const id = nanoid();
-    const name = e.name;
-    const number = e.number;
+    // const name = e.name;
+    // const number = e.number;
     const contactsList = [...contacts];
 
     if (contactsList.findIndex(contact => name === contact.name) !== -1) {
@@ -40,6 +38,8 @@ export const App = () => {
   const deleteContacts = e => {
     setContacts(contacts.filter(contact => contact.id !== e));
   };
+
+  const [filter, setFilter] = useState('');
 
   const changeFilter = e => {
     const { value } = e.target;
@@ -66,9 +66,8 @@ export const App = () => {
         backgroundColor: '#b4d6f5',
         borderRadius: '8px',
         padding: '40px 20px',
-        outline: 'solid',
+        outline: 'auto #291578',
         outlineOffset: '-10px',
-        outlineStyle: 'auto',
       }}
     >
       <h1 className={css.phohebookTitle}> Phonebook</h1>
